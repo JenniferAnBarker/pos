@@ -48,7 +48,7 @@
                 <li class="menu-title">Navigation</li>
     
                 <li>
-                    <a href="{{ url('/dashboard')}}" data-bs-toggle="collapse">
+                    <a href="{{ url('/dashboard')}}">
                         <i class="mdi mdi-view-dashboard-outline"></i>
                         <span> Dashboards </span>
                     </a>
