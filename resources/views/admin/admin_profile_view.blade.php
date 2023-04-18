@@ -123,7 +123,10 @@
                                             
                                             <div class="col-md-9">
                                                 <div class="mb-3">
-                                                    <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.png')}}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+                                                    <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.png')}}" 
+                                                    class="rounded-circle avatar-lg img-thumbnail" 
+                                                    alt="profile-image"
+                                                    id="showImage">
                                                 </div> 
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
@@ -148,6 +151,18 @@
         </div> <!-- container -->
 
     </div> <!-- content -->
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#image').change(function(e) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#showImage').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        })
+    })
+    </script>
 
 
 @endsection
