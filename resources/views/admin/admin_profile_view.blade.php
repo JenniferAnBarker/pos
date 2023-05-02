@@ -1,5 +1,6 @@
 @extends('admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
     <div class="content">
@@ -28,7 +29,7 @@
                 <div class="col-lg-4 col-xl-4">
                     <div class="card text-center">
                         <div class="card-body">
-                            <img src="{{ (!empty($adminData->photo) ? url('upload/admin_image/'.$admin->photo) : url('upload/no_image.png')) }}" class="rounded-circle avatar-lg img-thumbnail"
+                            <img src="{{ (!empty($adminData->photo) ? url('upload/admin_images/'.$adminData->photo) : url('upload/no_image.png')) }}" class="rounded-circle avatar-lg img-thumbnail"
                             alt="profile-image">
 
                             <h4 class="mb-0">{{ $adminData->name}}</h4>
@@ -72,13 +73,14 @@
                         <div class="card-body">
 
                                 <div class="tab-pane" id="settings">
-                                    <form>
+                                    <form method="post" action="{{ route('admin.profile.store')}}" enctype="multipart/form-data">
+                                        @csrf
                                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label for="firstname" class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" id="firstname" value="{{ $adminData->name}}">
+                                                    <input type="text" name="name" class="form-control" id="firstname" value="{{ $adminData->name}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -104,7 +106,7 @@
                                             
                                                 <div class="mb-3">
                                                     <label for="userpassword" class="form-label">Phone</label>
-                                                    <input type="text" class="form-control" id="userpassword" value="{{ $adminData->phone}}">
+                                                    <input type="text" name="phone" class="form-control" id="userpassword" value="{{ $adminData->phone}}">
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
@@ -113,8 +115,8 @@
                                             
                                             <div class="col-md-9">
                                                 <div class="mb-3">
-                                                    <label for="photo_upload" class="form-label">Profile Image</label>
-                                                    <input type="file" id="photo_upload" class="form-control">
+                                                    <label for="image" class="form-label">Profile Image</label>
+                                                    <input type="file" name="photo" id="image" class="form-control">
                                                 </div> 
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
@@ -160,6 +162,7 @@
                 $('#showImage').attr('src',e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
+
         })
     })
     </script>

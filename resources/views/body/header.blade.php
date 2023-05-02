@@ -1,3 +1,12 @@
+@php
+
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+    $id = Auth::user()->id;
+    $data = User::find($id)
+@endphp
+
 <div class="navbar-custom">
     <div class="container-fluid">
         <ul class="list-unstyled topnav-menu float-end mb-0">
@@ -262,9 +271,9 @@
 
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ asset('backend/assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
+                    <img src="{{ (!empty($data->photo) ? url('upload/admin_images/'.$data->photo) : url('upload/no_image.png')) }}" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ms-1">
-                        Geneva <i class="mdi mdi-chevron-down"></i> 
+                        {{ $data->name}} <i class="mdi mdi-chevron-down"></i> 
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -286,9 +295,9 @@
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{ route('change.password')}}" class="dropdown-item notify-item">
                         <i class="fe-lock"></i>
-                        <span>Lock Screen</span>
+                        <span>Change Password</span>
                     </a>
 
                     <div class="dropdown-divider"></div>

@@ -50,7 +50,7 @@
                 <li>
                     <a href="{{ url('/dashboard')}}">
                         <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span> Dashboards </span>
+                        <span> Dashboard </span>
                     </a>
                 </li>
 
@@ -59,16 +59,16 @@
                 <li>
                     <a href="#sidebarEcommerce" data-bs-toggle="collapse">
                         <i class="mdi mdi-cart-outline"></i>
-                        <span> Ecommerce </span>
+                        <span> Manage Employees </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="ecommerce-dashboard.html">Dashboard</a>
+                                <a href="{{ route('all.employee')}}">All Employees</a>
                             </li>
                             <li>
-                                <a href="ecommerce-products.html">Products</a>
+                                <a href="ecommerce-products.html">Add an Employee</a>
                             </li>
                         </ul>
                     </div>
