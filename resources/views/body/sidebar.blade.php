@@ -68,7 +68,7 @@
                                 <a href="{{ route('all.employee')}}">All Employees</a>
                             </li>
                             <li>
-                                <a href="ecommerce-products.html">Add an Employee</a>
+                                <a href="{{ route('add.employee')}}">Add an Employee</a>
                             </li>
                         </ul>
                     </div>

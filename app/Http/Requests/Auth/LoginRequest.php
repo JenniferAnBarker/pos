@@ -55,7 +55,7 @@ class LoginRequest extends FormRequest
                 'login' => trans('auth.failed'),
             ]);
         }
-        
+
         Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
     }

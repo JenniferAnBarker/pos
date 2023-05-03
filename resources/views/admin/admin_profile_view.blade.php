@@ -91,15 +91,6 @@
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
 
-                                        {{-- <div class="row">
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="userbio" class="form-label">Bio</label>
-                                                    <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..."></textarea>
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row --> --}}
-
                                         <div class="row">
                                            
                                             <div class="col-md-6">
