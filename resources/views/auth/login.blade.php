@@ -81,6 +81,7 @@
 
                                     <div class="text-center d-grid">
                                         <button class="btn btn-primary" type="submit"> Log In </button>
+                                        <a href="{{ route('register') }}" class="btn btn-primary mt-3"> Not Registered? </a>
                                     </div>
 
                                 </form>

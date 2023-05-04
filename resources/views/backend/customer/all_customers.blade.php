@@ -12,10 +12,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <a href="{{ route('add.employee')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee</a>
+                            <a href="{{ route('add.customer')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Customer</a>
                         </ol>
                     </div>
-                    <h4 class="page-title">All Employees</h4>
+                    <h4 class="page-title">All Customers</h4>
                 </div>
             </div>
         </div>     
@@ -34,24 +34,24 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Salary</th>
+                                    <th>Shop Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                         
                         
                             <tbody>
-                                @foreach($employee as $key=> $emp)
+                                @foreach($customers as $key=> $cus)
                                 <tr>
                                     <td>{{ $key+1}}</td>
-                                    <td> <img src="{{(!empty($emp->image)) ? url($emp->image) : url('upload/no_image.png') }}" style="width:50px; height:40px;"> </td>
-                                    <td>{{ $emp->name}}</td>
-                                    <td>{{ $emp->email}}</td>
-                                    <td>{{ $emp->phone}}</td>
-                                    <td>{{ $emp->salary}}</td>
+                                    <td> <img src="{{(!empty($cus->image)) ? url($cus->image) : url('upload/no_image.png') }}" style="width:50px; height:40px;"> </td>
+                                    <td>{{ $cus->name}}</td>
+                                    <td>{{ $cus->email}}</td>
+                                    <td>{{ $cus->phone}}</td>
+                                    <td>{{ $cus->shopname}}</td>
                                     <td>
-                                        <a href="{{ route('edit.employee',$emp->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
-                                        <a href="{{ route('delete.employee',$emp->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                                        <a href="{{ route('edit.customer',$cus->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        <a href="{{ route('delete.customer',$cus->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

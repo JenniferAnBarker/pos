@@ -77,16 +77,16 @@
                 <li>
                     <a href="#sidebarCrm" data-bs-toggle="collapse">
                         <i class="mdi mdi-account-multiple-outline"></i>
-                        <span> CRM </span>
+                        <span> Manage Customers </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarCrm">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="crm-dashboard.html">Dashboard</a>
+                                <a href="{{ route('all.customers')}}">All Customers</a>
                             </li>
                             <li>
-                                <a href="crm-contacts.html">Contacts</a>
+                                <a href="{{ route('add.customer')}}">Add Customer</a>
                             </li>
                         </ul>
                     </div>
@@ -95,22 +95,16 @@
                 <li>
                     <a href="#sidebarEmail" data-bs-toggle="collapse">
                         <i class="mdi mdi-email-multiple-outline"></i>
-                        <span> Email </span>
+                        <span> Manage Suppliers </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEmail">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="email-inbox.html">Inbox</a>
+                                <a href="{{ route('all.suppliers')}}">All Suppliers</a>
                             </li>
                             <li>
-                                <a href="email-read.html">Read Email</a>
-                            </li>
-                            <li>
-                                <a href="email-compose.html">Compose Email</a>
-                            </li>
-                            <li>
-                                <a href="email-templates.html">Email Templates</a>
+                                <a href="{{ route('add.supplier')}}">Add Supplier</a>
                             </li>
                         </ul>
                     </div>
