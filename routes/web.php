@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\SupplierController;
 
 Route::get('/', function () {
@@ -71,6 +72,12 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/store/supplier', 'store')->name('add.supplier.store');
         Route::post('/update/supplier', 'update')->name('update.supplier');
+    });
+
+    /// Supplier routes
+    Route::controller(SalaryController::class)->group(function() {
+        Route::get('/add/salary', 'add')->name('add.advance.salary');
+        
     });
 });
 
