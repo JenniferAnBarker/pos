@@ -74,9 +74,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/supplier', 'update')->name('update.supplier');
     });
 
-    /// Supplier routes
+    /// Salary routes
     Route::controller(SalaryController::class)->group(function() {
         Route::get('/add/salary', 'add')->name('add.advance.salary');
+
+        Route::post('/advance/salary/store', 'store')->name('advance.salary.store');
         
     });
 });

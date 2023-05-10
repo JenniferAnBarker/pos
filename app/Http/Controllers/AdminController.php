@@ -22,7 +22,7 @@ class AdminController extends Controller
             'alert-type' => 'info'
         );
 
-        return redirect('/logout')->with($notification);
+        return redirect()->route('admin.logout.page')->with($notification);
     }
 
     public function logoutPage() {
