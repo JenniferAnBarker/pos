@@ -10,12 +10,12 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Add Advance Salary</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Edit Advance Salary</a></li> --}}
                         
-                        <li class="breadcrumb-item active">Add Advance Salary</li>
+                        <li class="breadcrumb-item active">Edit Advance Salary</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Add Advance Salary</h4>
+                <h4 class="page-title">Edit Advance Salary</h4>
             </div>
         </div>
     </div>     
@@ -28,8 +28,11 @@
                 <div class="card-body">
 
                         <div class="tab-pane" id="settings">
-                            <form method="post" action="{{ route('advance.salary.store')}}">
+                            <form method="post" action="{{ route('advance.salary.update')}}">
                                 @csrf
+
+                                <input type="hidden" name="id" value="{{$advance->id}}">
+
                                 <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Add Advance Salary</h5>
                                 
                                 <div class="row">
@@ -40,7 +43,7 @@
                                             <select name="employee_id" id="employee_id" class="form-select @error('employee_id') is-invalid @enderror">
                                                 <option selected disabled >Select Employee</option>
                                                 @foreach($employees as $emp)
-                                                <option value="{{ $emp->id}}">{{ $emp->name}}</option>
+                                                <option value="{{ $emp->id}}" {{ $emp->id == $advance->employee_id ? 'selected' : ''}}>{{ $emp->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -51,18 +54,18 @@
                                             <label for="month" class="form-label">Salary Month</label>
                                             <select name="month" id="month" class="form-select @error('month') is-invalid @enderror">
                                                 <option selected disabled >Select Month</option>
-                                                <option value="January">January</option>
-                                                <option value="February">February</option>
-                                                <option value="March">March</option>
-                                                <option value="April">April</option>
-                                                <option value="May">May</option>
-                                                <option value="June">June</option>
-                                                <option value="July">July</option>
-                                                <option value="August">August</option>
-                                                <option value="September">September</option>
-                                                <option value="October">October</option>
-                                                <option value="November">November</option>
-                                                <option value="December">December</option>
+                                                <option value="January" {{ $advance->month == 'January' ? 'selected' : ''}}>January</option>
+                                                <option value="February" {{ $advance->month == 'February' ? 'selected' : ''}}>February</option>
+                                                <option value="March" {{ $advance->month == 'March' ? 'selected' : ''}}>March</option>
+                                                <option value="April" {{ $advance->month == 'April' ? 'selected' : ''}}>April</option>
+                                                <option value="May" {{ $advance->month == 'May' ? 'selected' : ''}}>May</option>
+                                                <option value="June" {{ $advance->month == 'June' ? 'selected' : ''}}>June</option>
+                                                <option value="July" {{ $advance->month == 'July' ? 'selected' : ''}}>July</option>
+                                                <option value="August" {{ $advance->month == 'August' ? 'selected' : ''}}>August</option>
+                                                <option value="September" {{ $advance->month == 'September' ? 'selected' : ''}}>September</option>
+                                                <option value="October" {{ $advance->month == 'October' ? 'selected' : ''}}>October</option>
+                                                <option value="November" {{ $advance->month == 'November' ? 'selected' : ''}}>November</option>
+                                                <option value="December" {{ $advance->month == 'December' ? 'selected' : ''}}>December</option>
                                             </select>
                                             @error('month')
                                             <span class="text-danger"> {{ $message}} </span>
@@ -79,11 +82,11 @@
                                             <label for="year" class="form-label">Salary Year</label>
                                             <select name="year" id="year" class="form-select @error('year') is-invalid @enderror">
                                                 <option selected disabled >Select an option</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <option value="2027">2027</option>
+                                                <option value="2023" {{ $advance->year == '2023' ? 'selected' : ''}}>2023</option>
+                                                <option value="2024" {{ $advance->year == '2024' ? 'selected' : ''}}>2024</option>
+                                                <option value="2025" {{ $advance->year == '2025' ? 'selected' : ''}}>2025</option>
+                                                <option value="2026" {{ $advance->year == '2026' ? 'selected' : ''}}>2026</option>
+                                                <option value="2027" {{ $advance->year == '2027' ? 'selected' : ''}}>2027</option>
                                             </select>
                                             @error('year')
                                             <span class="text-danger"> {{ $message}} </span>
@@ -94,7 +97,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="advance_salary" class="form-label">Advance Salary</label>
-                                            <input type="text" name="advance_salary" class="form-control @error('advance_salary') is-invalid @enderror" id="advance_salary" value="">
+                                            <input type="text" name="advance_salary" class="form-control @error('advance_salary') is-invalid @enderror" id="advance_salary" value="{{ $advance->advance_salary }}">
                                             @error('advance_salary')
                                             <span class="text-danger"> {{ $message}} </span>
                                             @enderror

@@ -10,12 +10,11 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Add Advance Salary</a></li>
                         
-                        <li class="breadcrumb-item active">Add Advance Salary</li>
+                        <li class="breadcrumb-item active">Paid Salaries</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Add Advance Salary</h4>
+                <h4 class="page-title">Paid Salaries</h4>
             </div>
         </div>
     </div>     
@@ -30,19 +29,14 @@
                         <div class="tab-pane" id="settings">
                             <form method="post" action="{{ route('advance.salary.store')}}">
                                 @csrf
-                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Add Advance Salary</h5>
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Paid Salaries</h5>
                                 
                                 <div class="row">
                                     
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="employee_id" class="form-label">Employee Name</label>
-                                            <select name="employee_id" id="employee_id" class="form-select @error('employee_id') is-invalid @enderror">
-                                                <option selected disabled >Select Employee</option>
-                                                @foreach($employees as $emp)
-                                                <option value="{{ $emp->id}}">{{ $emp->name}}</option>
-                                                @endforeach
-                                            </select>
+                                           <p>{{ $paysalary->name}}</p>
                                         </div>
                                     </div> <!-- end col -->
                                     
