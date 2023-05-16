@@ -11,10 +11,10 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         
-                        <li class="breadcrumb-item active">Pay Salary</li>
+                        <li class="breadcrumb-item active">Previous Salaries</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Pay Salary</h4>
+                <h4 class="page-title">Previous Salaries</h4>
             </div>
         </div>
     </div>     
@@ -27,12 +27,12 @@
                 <div class="card-body">
 
                         <div class="tab-pane" id="settings">
-                            <form method="post" action="{{ route('employee.salary.store')}}">
+                            <form method="get" action="{{ route('previous.salary')}}">
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{$paysalary->id}}">
 
-                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Pay Salary</h5>
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Previous Salaries</h5>
                                 
                                 <div class="row">
                                     
@@ -93,7 +93,8 @@
                                 </div> <!-- end row -->
                                 
                                 <div class="text-end">
-                                    <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="fa-solid fa-receipt"></i> Pay</button>
+                                    
+                                    <button type="" class="btn btn-success waves-effect waves-light mt-2"><i class="fa-solid fa-backward"></i> Back</button>
                                 </div>
                             </form>
                         </div>

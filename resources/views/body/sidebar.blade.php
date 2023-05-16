@@ -91,6 +91,25 @@
                             <li>
                                 <a href="{{ route('pay.salary')}}">Pay Salary</a>
                             </li>
+                            <li>
+                                <a href="{{ route('previous.salary')}}">Previous Salaries</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#attendance" data-bs-toggle="collapse">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Attendance </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="attendance">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('employee.attendance.list')}}">Employee Attendance</a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </li>
