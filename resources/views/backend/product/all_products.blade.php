@@ -12,10 +12,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <a href="{{ route('add.employee.attendance')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Employee Attendance</a>
+                            <a href="{{ route('add.product')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product</a>
                         </ol>
                     </div>
-                    <h4 class="page-title">Employee Attendance</h4>
+                    <h4 class="page-title">All Products</h4>
                 </div>
             </div>
         </div>     
@@ -30,20 +30,30 @@
                             <thead>
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Date</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Supplier</th>
+                                    <th>Product Code</th>
+                                    <th>Selling Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            {{-- date('Y-m-d'),  --}}
+                        
                         
                             <tbody>
-                                @foreach($allData as $key=> $data)
+                                @foreach($products as $key=> $item)
                                 <tr>
                                     <td>{{ $key+1}}</td>
-                                    <td>{{ $data->date}}</td>
+                                    <td> <img src="{{ url($item->product_image) }}" style="width:50px; height:40px;"> </td>
+                                    <td>{{ $item->name}}</td>
+                                    <td>{{ $item->category->category_name}}</td>
+                                    <td>{{ $item->supplier->name}}</td>
+                                    <td>{{ $item->product_code}}</td>
+                                    <td>{{ $item->selling_price}}</td>
                                     <td>
-                                        <a href="{{ route('employee.attendance.view', $data->date)}}" class="btn btn-danger rounded-pill waves-effect waves-light">View</a>
-                                        <a href="{{ route('employee.attendance.edit', $data->date)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        <a href="{{ route('edit.product',$item->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        <a href="{{ route('delete.customer',$item->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

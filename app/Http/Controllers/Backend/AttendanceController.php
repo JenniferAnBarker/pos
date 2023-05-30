@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AttendanceController extends Controller
 {
     public function attendanceList() {
-        $allData = Attendance::orderBy('id', 'desc')->get();
+        $allData = Attendance::select('date')->groupBy('date')->orderBy('id', 'desc')->get();
         return view('backend.attendance.view_employee_attendance',compact('allData'));
     }
 
@@ -21,6 +21,7 @@ class AttendanceController extends Controller
     }
 
     public function store(Request $request) {
+        Attendance::where('date',date('Y-m-d',strtotime($request->date)))->delete();
 
         $countemployee = count($request->employee_id);
 
@@ -39,5 +40,17 @@ class AttendanceController extends Controller
         );
 
         return redirect()->route('employee.attendance.list')->with($notification);
+    }
+
+    public function attendanceEdit($date) {
+        $employees = Employee::all();
+        $editData = Attendance::where('date',$date)->get();
+        return view('backend.attendance.edit_employee_attendance', compact('employees','editData'));
+    }
+
+    public function attendanceView($date) {
+        $employees = Employee::all();
+        $details = Attendance::where('date',$date)->get();
+        return view('backend.attendance.details_employee_attendance', compact('employees','details'));
     }
 }
