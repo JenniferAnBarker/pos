@@ -15,6 +15,14 @@
                         <span> Dashboard </span>
                     </a>
                 </li>
+    
+                <li>
+                    <a href="{{ route('pos')}}">
+                        <span class="badge bg-pink float-end">Hot</span>
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span> POS </span>
+                    </a>
+                </li>
 
                 <li class="menu-title mt-2">Apps</li>
 
@@ -144,6 +152,60 @@
                             <li>
                                 <a href="{{ route('add.product')}}">Add Products</a>
                             </li>
+                            <li>
+                                <a href="{{ route('import.product')}}">Import Products</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#orders" data-bs-toggle="collapse">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Orders </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="orders">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('pending.orders')}}">Pending Orders</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('complete.orders')}}">Complete Orders</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#stock" data-bs-toggle="collapse">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Manage Stock </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="stock">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('manage.stock')}}">Stock</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#permission" data-bs-toggle="collapse">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Roles and Permissions </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="permission">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.permissions')}}">All Permissions</a>
+                            </li>
                             
                         </ul>
                     </div>
@@ -156,16 +218,22 @@
                 <li>
                     <a href="#sidebarAuth" data-bs-toggle="collapse">
                         <i class="mdi mdi-account-circle-outline"></i>
-                        <span> Auth Pages </span>
+                        <span> Expense </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarAuth">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="auth-login.html">Log In</a>
+                                <a href="{{ route('add.expense')}}">Add Expense</a>
                             </li>
                             <li>
-                                <a href="auth-login-2.html">Log In 2</a>
+                                <a href="{{ route('daily.expense')}}">Daily Expense</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('month.expense')}}">Monthy Expense</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('year.expense')}}">Yearly Expense</a>
                             </li>
                            
                         </ul>

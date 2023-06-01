@@ -3,13 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\PosController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\SalaryController;
+use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\AttendanceController;
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\RoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -122,8 +126,58 @@ Route::middleware('auth')->group(function () {
         Route::get('/all/product', 'all')->name('all.product');
         Route::get('/add/product', 'add')->name('add.product');
         Route::get('/edit/product/{id}', 'edit')->name('edit.product');
-
+        Route::get('/delete/product/{id}', 'delete')->name('delete.product');
+        Route::get('/code/product/{id}', 'code')->name('code.product');
+        Route::get('/import/product', 'importProduct')->name('import.product');
+        Route::get('/export', 'export')->name('export');
+        
         Route::post('/product/store', 'store')->name('product.store');
+        Route::post('/product/update', 'update')->name('product.update');
+        Route::post('/import', 'import')->name('import');
+    });
+
+    /// Expense Routes
+    Route::controller(ExpenseController::class)->group(function() {
+        Route::get('/add/expense', 'add')->name('add.expense');
+        Route::get('/daily/expense', 'daily')->name('daily.expense');
+        Route::get('/month/expense', 'month')->name('month.expense');
+        Route::get('/year/expense', 'year')->name('year.expense');
+        Route::get('/edit/expense/{id}', 'edit')->name('edit.expense');
+
+        Route::post('/store/expense', 'store')->name('store.expense');
+        Route::post('/update/expense', 'update')->name('update.expense');
+       
+    });
+
+    /// POS Routes
+    Route::controller(PosController::class)->group(function() {
+        Route::get('/pos', 'pos')->name('pos');
+        Route::get('/text-all-item', 'textItem');
+        Route::get('/cart-remove/{rowId}', 'removeItem');
+
+        Route::post('/add-cart', 'addCart');
+        Route::post('/cart-update/{rowId}', 'updateCart');
+        Route::post('/create-invoice', 'createInvoice');
+    });
+
+    /// Order Routes
+    Route::controller(OrderController::class)->group(function() {
+        Route::get('/orders/pending', 'pending')->name('pending.orders');
+        Route::get('/orders/complete', 'complete')->name('complete.orders');
+        Route::get('/order/details/{order_id}', 'details')->name('order.details');
+
+        Route::post('/final-invoice', 'finalInvoice');
+        Route::post('/order/status/update', 'statusUpdate')->name('order.status.update');
+       
+        /// Stock Routes
+        Route::get('/stock/manage', 'manageStock')->name('manage.stock');
+        Route::get('/order/invoice-download/{order_id}', 'downloadInvoice');
+    });
+
+    /// Role Routes
+    Route::controller(RoleController::class)->group(function() {
+        Route::get('/permissions/all', 'all')->name('all.permissions');
+        
     });
 });
  

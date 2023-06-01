@@ -68,14 +68,14 @@
                                         </div>
                                     </div> <!-- end col -->
                                 
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                     
                                         <div class="form-group mb-3">
                                             <label for="product_code" class="form-label">Product Code</label>
                                             <input type="text" name="product_code" class="form-control" id="product_code" value="">
                                            
                                         </div>
-                                    </div> <!-- end col -->
+                                    </div> <!-- end col --> --}}
                                 </div> <!-- end row -->
 
                                 <div class="row">
@@ -189,9 +189,9 @@
                 supplier_id: {
                     required : true,
                 },  
-                product_code: {
-                    required : true,
-                },  
+                // product_code: {
+                //     required : true,
+                // },  
                 product_garage: {
                     required : true,
                 },  
@@ -224,9 +224,9 @@
                 supplier_id: {
                     required : 'Please Select Supplier',
                 }, 
-                product_code: {
-                    required : 'Please Enter Product Code',
-                }, 
+                // product_code: {
+                //     required : 'Please Enter Product Code',
+                // }, 
                 product_garage: {
                     required : 'Please Enter Product Garage',
                 }, 
@@ -245,7 +245,7 @@
                 selling_price: {
                     required : 'Please Enter Selling Price',
                 }, 
-                prroduct_image: {
+                product_image: {
                     required : 'Please Enter Product Image',
                 }, 
 
