@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,11 +22,8 @@ class AdminController extends Controller
             'alert-type' => 'info'
         );
 
-        return redirect()->route('admin.logout.page')->with($notification);
-    }
-
-    public function logoutPage() {
-        return view('admin.admin_logout');
+        return view('admin.admin_logout')->with($notification);
+        // return redirect()->route('admin.logout.page')->with($notification);
     }
 
     public function profile() {
@@ -45,7 +43,7 @@ class AdminController extends Controller
 
         if($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/admin_image/'.$data->photo));
+            @unlink(public_path('upload/admin_images/'.$data->photo));
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'),$filename);
             $data['photo'] = $filename;
@@ -94,5 +92,51 @@ class AdminController extends Controller
 
         return back()->with($notification);
         
+    }
+
+    /////////////////////////// Admin User ///////////////////////
+
+    public function au_all() {
+       
+        $allAdminUsers = User::latest()->get();
+
+        return view('backend.admin.all_admin',compact('allAdminUsers'));
+    }
+
+    public function au_add(){
+        
+        $roles = Role::all();
+
+        return view('backend.admin.add_admin',compact('roles'));
+    }
+
+    public function au_store(Request $request) {
+        
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->photo = $request->photo;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        if($request->roles) {
+            $user->assignRole($request->roles);
+        }
+        
+        $notification = array (
+            'message' => 'Admin User Created!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.admin')->with($notification);
+    }
+
+    public function au_edit($id) {
+        
+        $roles = Role::all();
+        $user = User::findOrFail($id);
+
+        return view('backend.admin.edit_admin',compact('user','roles'));
     }
 }

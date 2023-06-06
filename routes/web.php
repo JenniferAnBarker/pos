@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
     /// Admin Routes
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/logout', 'destroy')->name('admin.logout');
-        Route::get('/logout', 'logoutPage')->name('admin.logout.page');
         Route::get('/admin/profile', 'profile')->name('admin.profile');
         Route::get('/change/password', 'changePassword')->name('change.password');
 
@@ -174,10 +173,40 @@ Route::middleware('auth')->group(function () {
         Route::get('/order/invoice-download/{order_id}', 'downloadInvoice');
     });
 
-    /// Role Routes
+    /// Permission & Role Routes
     Route::controller(RoleController::class)->group(function() {
-        Route::get('/permissions/all', 'all')->name('all.permissions');
+        Route::get('/permissions/all', 'per_all')->name('all.permissions');
+        Route::get('/permissions/add', 'per_add')->name('add.permissions');
+        Route::get('/permissions/edit/{id}', 'per_edit')->name('edit.permissions');
+        Route::get('/permissions/delete/{id}', 'per_delete')->name('delete.permission');
+        Route::get('/roles/all', 'role_all')->name('all.roles');
+        Route::get('/roles/add', 'role_add')->name('add.roles');
+        Route::get('/roles/edit/{id}', 'role_edit')->name('edit.role');
+        Route::get('/roles/delete/{id}', 'role_delete')->name('delete.role');
+
+        Route::post('/permissions/store', 'per_store')->name('permission.store');
+        Route::post('/permissions/update', 'per_update')->name('permission.update');
+        Route::post('/roles/store', 'role_store')->name('role.store');
+        Route::post('/roles/update', 'role_update')->name('role.update');
         
+        /// Permission & Role Routes
+        Route::get('/roles-permission/add', 'rp_add')->name('add.roles.permission');
+        Route::get('/roles-permission/all', 'rp_all')->name('all.roles.permission');
+        Route::get('/roles-permission/edit/{id}', 'rp_edit')->name('admin.edit.roles');
+        Route::get('/roles-permission/delete/{id}', 'rp_delete')->name('admin.delete.roles');
+        
+        Route::post('/roles-permission/store', 'rp_store')->name('role.permission.store');
+        Route::post('/roles-permission/update/{id}', 'rp_update')->name('role.permission.update');
+    });
+
+    /// Admin User Routes
+    Route::controller(AdminController::class)->group(function() {
+        Route::get('/admin/all', 'au_all')->name('all.admin');
+        Route::get('/admin/add', 'au_add')->name('add.admin');
+        Route::get('/admin/edit/{id}', 'au_edit')->name('edit.admin');
+
+        Route::post('/admin/store', 'au_store')->name('admin.store');
+       
     });
 });
  

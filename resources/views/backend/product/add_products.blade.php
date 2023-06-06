@@ -107,7 +107,7 @@
                                     </div> <!-- end col -->
                                     
                                     <div class="col-md-6">
-                                        <div class="form-groupmb-3">
+                                        <div class="form-group mb-3">
                                             <label for="buying_price" class="form-label">Purchase Price</label>
                                             <input type="text" name="buying_price" id="buying_price" class="form-control" value="">
                                             
@@ -118,7 +118,7 @@
                                 <div class="row">
                                     
                                     <div class="col-md-6">
-                                        <div class="form-groupmb-3">
+                                        <div class="form-group mb-3">
                                             <label for="expire_date" class="form-label">Expiration Date</label>
                                             <input type="date" name="expire_date" id="expire_date" class="form-control" value="">
                                             
