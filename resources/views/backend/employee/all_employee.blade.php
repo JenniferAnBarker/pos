@@ -48,7 +48,7 @@
                                     <td>{{ $emp->name}}</td>
                                     <td>{{ $emp->email}}</td>
                                     <td>{{ $emp->phone}}</td>
-                                    <td>{{ $emp->salary}}</td>
+                                    <td>£{{ number_format((float)$emp->salary, 2, '.', '')}}</td>
                                     <td>
                                         @if(Auth::user()->can('employee.edit'))
                                         <a href="{{ route('edit.employee',$emp->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>

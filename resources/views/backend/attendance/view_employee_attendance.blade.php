@@ -42,8 +42,12 @@
                                     <td>{{ $key+1}}</td>
                                     <td>{{ $data->date}}</td>
                                     <td>
+                                        @if(Auth::user()->can('attendance.view'))
                                         <a href="{{ route('employee.attendance.view', $data->date)}}" class="btn btn-danger rounded-pill waves-effect waves-light">View</a>
+                                        @endif
+                                        @if(Auth::user()->can('attendance.edit'))
                                         <a href="{{ route('employee.attendance.edit', $data->date)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

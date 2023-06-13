@@ -210,7 +210,7 @@
                                 <a href="{{ route('complete.orders')}}">Complete Orders</a>
                             </li>
                             <li>
-                                <a href="{{ route('pending.due')}}">Pending Due</a>
+                                <a href="{{ route('pending.due')}}">Outstanding Payments</a>
                             </li>
                             
                         </ul>
@@ -263,6 +263,7 @@
                 </li>
                 @endif
 
+                @if(Auth::user()->can('admin.menu'))
                 <li>
                     <a href="#admin" data-bs-toggle="collapse">
                         <i class="mdi mdi-cart-outline"></i>
@@ -271,15 +272,20 @@
                     </a>
                     <div class="collapse" id="admin">
                         <ul class="nav-second-level">
+                            @if(Auth::user()->can('admin.all'))
                             <li>
                                 <a href="{{ route('all.admin')}}">All Admin</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->can('admin.add'))
                             <li>
                                 <a href="{{ route('add.admin')}}">Add Admin</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
 
                 {{-- ///////////////////////////////////////////////////////////////////////////////////////// --}}
 
@@ -311,32 +317,7 @@
                     </div>
                 </li>
                 @endif
-
-                <li>
-                    <a href="#sidebarExpages" data-bs-toggle="collapse">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Extra Pages </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarExpages">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="pages-starter.html">Starter</a>
-                            </li>
-                            <li>
-                                <a href="pages-timeline.html">Timeline</a>
-                            </li>
-                            <li>
-                                <a href="pages-sitemap.html">Sitemap</a>
-                            </li>
-                            <li>
-                                <a href="pages-invoice.html">Invoice</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-
+                
             </ul>
 
         </div>

@@ -49,22 +49,22 @@
                                     <td> <img src="{{ asset($emp->image)}}" style="width:50px; height:40px;"> </td>
                                     <td>{{$emp->name}}</td>
                                     <td><span class="badge bg-info">{{date("F", strtotime('-1 month'))}}</span></td>
-                                    <td>£ {{$emp->salary}}</td>
+                                    <td>£ {{ number_format((float)$emp->salary, 2, '.', '')}}</td>
                                     <td>
                                         @if(empty($emp->advance->advance_salary))
                                             <p>No Advance</p>
                                         @else
-                                           £ {{ $emp->advance->advance_salary}}
+                                           £ {{ number_format((float)$emp->advance->advance_salary, 2, '.', '')}}
                                         @endif    
                                     </td>
                                     <td>
                                         @if(empty($emp->advance->advance_salary))
-                                            <strong style="color: #fff;">£ {{ $emp->salary}}</strong>
+                                            <strong style="color: #fff;">£ {{ number_format((float)$emp->salary, 2, '.', '')}}</strong>
                                         @else
                                         @php
                                             $amount = $emp->salary - $emp->advance->advance_salary;
                                         @endphp
-                                        <strong style="color: #fff;">£ {{ $amount}}</strong>
+                                        <strong style="color: #fff;">£ {{ number_format((float)$amount, 2, '.', '')}}</strong>
                                         @endif
                                     </td>
                                     <td>

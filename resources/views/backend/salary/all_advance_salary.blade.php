@@ -47,8 +47,8 @@
                                     <td> <img src="{{ asset($adv->employee->image)}}" style="width:50px; height:40px;"> </td>
                                     <td>{{ $adv['employee']['name']}}</td> <!-- One way to write the relationship reference --->
                                     <td>{{ $adv->month}}</td>
-                                    <td>£ {{ $adv->employee->salary}}</td>  <!-- Another way to write the relationship reference --->
-                                    <td>£ {{ $adv->advance_salary}}</td>
+                                    <td>£ {{ number_format((float)$adv->employee->salary, 2, '.', '')}}</td>  <!-- Another way to write the relationship reference --->
+                                    <td>£ {{ number_format((float)$adv->advance_salary, 2, '.', '')}}</td>
                                     <td>
                                         <a href="{{ route('edit.advance.salary',$adv->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
                                         <a href="{{ route('delete.advance.salary',$adv->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>

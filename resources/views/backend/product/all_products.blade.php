@@ -12,11 +12,17 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
+                            @if(Auth::user()->can('product.add'))
                             <a class="btn btn-info rounded-pill waves-effect waves-light" href="{{ route('import.product')}}">Import</a>
+                            @endif
                             &nbsp;&nbsp;&nbsp;
+                            @if(Auth::user()->can('product.all'))
                             <a class="btn btn-warning rounded-pill waves-effect waves-light" href="{{ route('export')}}">Export</a>
+                            @endif
                             &nbsp;&nbsp;&nbsp;
+                            @if(Auth::user()->can('product.add'))
                             <a href="{{ route('add.product')}}" class="btn btn-primary rounded-pill waves-effect waves-light">Add Product</a>
+                            @endif
                         </ol>
                     </div>
                     <h4 class="page-title">All Products</h4>
@@ -64,9 +70,15 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if(Auth::user()->can('product.edit'))
                                         <a href="{{ route('edit.product',$item->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        @endif
+                                        @if(Auth::user()->can('product.all'))
                                         <a href="{{ route('code.product',$item->id)}}" class="btn btn-info rounded-pill waves-effect waves-light"><i class="fa fa-barcode" aria-hidden="true"></i></a>
+                                        @endif
+                                        @if(Auth::user()->can('product.delete'))
                                         <a href="{{ route('delete.product',$item->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
 

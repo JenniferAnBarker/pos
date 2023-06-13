@@ -38,12 +38,14 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                        
+                        @php
+                            $i = 0;
+                        @endphp
                         
                             <tbody>
                                 @foreach($customers as $key=> $cus)
                                 <tr>
-                                    <td>{{ $key+1}}</td>
+                                    <td>{{ $i++}}</td>
                                     <td> <img src="{{(!empty($cus->image)) ? url($cus->image) : url('upload/no_image.png') }}" style="width:50px; height:40px;"> </td>
                                     <td>{{ $cus->name}}</td>
                                     <td>{{ $cus->email}}</td>

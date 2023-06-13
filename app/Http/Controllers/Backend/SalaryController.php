@@ -139,7 +139,7 @@ class SalaryController extends Controller
     }
 
     public function previousPaid($id) {
-        $paysalary = Employee::findOrFail($id);
+        $paysalary = PaySalary::findOrFail($id);
         return view('backend.salary.previous_paid_salary',compact('paysalary'));
     }
     

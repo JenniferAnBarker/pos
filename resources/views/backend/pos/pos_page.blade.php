@@ -58,8 +58,8 @@
                                                     <button type="submit" class="btn btn-sm btn-success" style="margin-top:-2px;"><i class="fas fa-check"></i></button>
                                                 </form>
                                             </td>
-                                            <td>{{$item->price}}</td>
-                                            <td>{{$item->subtotal}}</td>
+                                            <td>£{{number_format((float)$item->price, 2, '.', '')}}</td>
+                                            <td>£{{number_format((float)$item->subtotal, 2, '.', '')}}</td>
                                             <td><a href="{{ url('/cart-remove/'.$item->rowId)}}"><i class="fas fa-trash" style="color: white;"></i></a></td>
                                         </tr>
                                         @endforeach

@@ -52,9 +52,9 @@
                                     <td>{{ $item->order_date}}</td>
                                     <td>{{ $item->payment_status}}</td>
                                     <td>{{ $item->invoice_no}}</td>
-                                    <td><span class="btn btn-info waves-effect waves-light">£{{ $item->total}}</span></td>
-                                    <td><span class="btn btn-warning waves-effect waves-light">£{{ $item->pay}}</span></td>
-                                    <td><span class="btn btn-danger waves-effect waves-light">£{{ $item->due}}</span></td>
+                                    <td><span class="btn btn-info waves-effect waves-light">£{{ number_format((float)$item->total, 2, '.', '')}}</span></td>
+                                    <td><span class="btn btn-warning waves-effect waves-light">£{{ number_format((float)$item->pay, 2, '.', '')}}</span></td>
+                                    <td><span class="btn btn-danger waves-effect waves-light">£{{ number_format((float)$item->due, 2, '.', '')}}</span></td>
                                     <td>
                                         {{-- <a href="{{ route('order.details',$item->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Details</a> --}}
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal" id="{{ $item->id}}" onclick="orderDue(this.id)">Pay Amount Due</button>
@@ -88,7 +88,7 @@
                     <div class="auth-logo">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-lg">
-                                <img src="assets/images/logo-dark.png" alt="" height="24">
+                                <img src={{ asset('backend/assets/images/logo-dark.png')}} alt="" height="24">
                             </span>
                         </a>
     

@@ -18,12 +18,12 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Edit Role In Permission</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Add Role In Permission</a></li>
                         
-                        <li class="breadcrumb-item active">Edit Role In Permission</li>
+                        <li class="breadcrumb-item active">Add Role In Permission</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Edit Role In Permission</h4>
+                <h4 class="page-title">Add Role In Permission</h4>
             </div>
         </div>
     </div>     
@@ -36,7 +36,7 @@
                 <div class="card-body">
 
                         <div class="tab-pane" id="settings">
-                            <form id="myForm" method="post" action="{{ route('role.permission.update',$role->id)}}" enctype="multipart/form-data">
+                            <form id="myForm" method="post" action="{{ route('role.permission.store')}}" enctype="multipart/form-data">
                                 @csrf
 
                                 <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Role Info</h5>
@@ -45,8 +45,14 @@
                                     
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
-                                            <label for="group_name" class="form-label mt-2">Edit Role:</label>
-                                           <h4 class="mb-5 p-1">{{ $role->name}}</h4>
+                                            <label for="group_name" class="form-label">All Roles</label>
+                                            <select name="role_id" id="group_name" class="form-control">
+                                                <option selected disabled>Select Roles</option>
+                                                @foreach ($roles as $item)
+                                                    
+                                                <option value="{{ $item->id}}">{{ $item->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div> <!-- end col -->
                                     
@@ -67,26 +73,26 @@
                                 </div> <!-- end row -->
 
                                 @foreach ($permission_groups as $key => $item)
-
-                                @php
-                                $permissions = App\Models\User::getPermissionByGroupName($item->group_name);
-                                @endphp
                                     
                                     <div class="row border">
 
                                         <div class="col-3">
                                             <div class="form-check mb-3 form-check-primary">
                                                 <label for="group_checkbox{{$key}}" class="form-check-label">{{ $item->group_name}}</label>
-                                                <input type="checkbox" name="name" class="form-check-input" id="group_checkbox{{$key}}" value="" {{ App\Models\User::roleHasPermissions($role,$permissions) ? 'checked' : '' }}>
+                                                <input type="checkbox" name="name" class="form-check-input" id="group_checkbox{{$key}}">
                                             </div>
                                         </div> <!-- end col -->
 
                                         <div class="col-9">
+                                            @php
+                                                $permissions = App\Models\User::getPermissionByGroupName($item->group_name);
+                                                
+                                            @endphp
 
-                                            @foreach ($permissions as $item)
+                                            @foreach ($permissions as $perm)
                                             <div class="form-check mb-3 form-check-primary">
-                                                <label for="checkbox{{ $item->id}}" class="form-check-label">{{ $item->name}}</label>
-                                                <input type="checkbox" name="permission[]" {{ $role->hasPermissionTo($item->name) ? 'checked' : '' }} class="form-check-input" id="checkbox{{ $item->id}}" value="{{ $item->id}}">
+                                                <label for="cb" class="form-check-label">{{ $perm->name}}</label>
+                                                <input type="checkbox" name="permission[]" class="form-check-input checkbox{{ $key}}" id="cb" value="{{ $perm->id}}">
                                             </div>
                                             @endforeach
 
@@ -112,7 +118,33 @@
 
 </div>
 
+
 <script type="text/javascript">
+
+const id = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+$('#permit_all').click(function(){
+        if( $(this).is(':checked')){
+            $('input[type = checkbox]').prop('checked',true);
+        }else{
+            $('input[type = checkbox]').prop('checked',false);
+        }
+    })
+
+$.each(id, function(index, val){
+    $('#group_checkbox' + val).click(function(){
+        if( $(this).is(':checked')){
+            $('.checkbox' + val).prop('checked',true);
+        }else{
+            $('.checkbox' + val).prop('checked',false);
+        }
+    });
+})
+
+</script>
+
+
+{{-- <script type="text/javascript">
     $('#permit_all').click(function(){
         if( $(this).is(':checked')){
             $('input[type = checkbox]').prop('checked',true);
@@ -255,6 +287,6 @@
         }
     })
 
-</script>
+</script> --}}
 
 @endsection

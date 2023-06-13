@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AttendanceController extends Controller
 {
     public function attendanceList() {
-        $allData = Attendance::select('date')->groupBy('date')->orderBy('id', 'desc')->get();
+        $allData = Attendance::select('date')->groupBy('date')->orderBy('date','desc')->get();
         return view('backend.attendance.view_employee_attendance',compact('allData'));
     }
 
@@ -50,7 +50,7 @@ class AttendanceController extends Controller
 
     public function attendanceView($date) {
         $employees = Employee::all();
-        $details = Attendance::where('date',$date)->get();
+        $details = Attendance::where('date',$date)->orderBy('id', 'desc')->get();
         return view('backend.attendance.details_employee_attendance', compact('employees','details'));
     }
 }

@@ -113,8 +113,8 @@ Route::middleware('auth')->group(function () {
     /// Category routes
     Route::controller(CategoryController::class)->group(function() {
         Route::get('/all/categories', 'all')->name('all.category')->middleware('permission:category.menu');
-        Route::get('/edit/categoriy/{id}', 'edit')->name('edit.category')->middleware('permission:category.menu');
-        Route::get('/delete/category/{id}', 'delete')->name('delete.category')->middleware('permission:category.menu');
+        Route::get('/edit/categoriy/{id}', 'edit')->name('edit.category')->middleware('permission:category.edit');
+        Route::get('/delete/category/{id}', 'delete')->name('delete.category')->middleware('permission:category.delete');
 
         Route::post('/store/cateogry', 'store')->name('store.category');
         Route::post('/update/cateogry', 'update')->name('category.update');
@@ -122,13 +122,13 @@ Route::middleware('auth')->group(function () {
 
     /// Product Routes
     Route::controller(ProductController::class)->group(function() {
-        Route::get('/all/product', 'all')->name('all.product')->middleware('permission:product.menu');
-        Route::get('/add/product', 'add')->name('add.product')->middleware('permission:product.menu');
-        Route::get('/edit/product/{id}', 'edit')->name('edit.product')->middleware('permission:product.menu');
-        Route::get('/delete/product/{id}', 'delete')->name('delete.product')->middleware('permission:product.menu');
-        Route::get('/code/product/{id}', 'code')->name('code.product')->middleware('permission:product.menu');
-        Route::get('/import/product', 'importProduct')->name('import.product')->middleware('permission:product.menu');
-        Route::get('/export', 'export')->name('export')->middleware('permission:product.menu');
+        Route::get('/all/product', 'all')->name('all.product')->middleware('permission:product.all');
+        Route::get('/add/product', 'add')->name('add.product')->middleware('permission:product.add');
+        Route::get('/edit/product/{id}', 'edit')->name('edit.product')->middleware('permission:product.edit');
+        Route::get('/delete/product/{id}', 'delete')->name('delete.product')->middleware('permission:product.delete');
+        Route::get('/code/product/{id}', 'code')->name('code.product')->middleware('permission:product.all');
+        Route::get('/import/product', 'importProduct')->name('import.product')->middleware('permission:product.add');
+        Route::get('/export', 'export')->name('export')->middleware('permission:product.all');
         
         Route::post('/product/store', 'store')->name('product.store');
         Route::post('/product/update', 'update')->name('product.update');
@@ -207,10 +207,10 @@ Route::middleware('auth')->group(function () {
 
     /// Admin User Routes
     Route::controller(AdminController::class)->group(function() {
-        Route::get('/admin/all', 'au_all')->name('all.admin');
-        Route::get('/admin/add', 'au_add')->name('add.admin');
-        Route::get('/admin/edit/{id}', 'au_edit')->name('edit.admin');
-        Route::get('/admin/delete/{id}', 'au_delete')->name('delete.admin');
+        Route::get('/admin/all', 'au_all')->name('all.admin')->middleware('permission:admin.all');;
+        Route::get('/admin/add', 'au_add')->name('add.admin')->middleware('permission:admin.add');;
+        Route::get('/admin/edit/{id}', 'au_edit')->name('edit.admin')->middleware('permission:admin.edit');;
+        Route::get('/admin/delete/{id}', 'au_delete')->name('delete.admin')->middleware('permission:admin.delete');;
 
         Route::post('/admin/store', 'au_store')->name('admin.store');
         Route::post('/admin/update', 'au_update')->name('admin.update');

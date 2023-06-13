@@ -149,7 +149,6 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->photo = $request->photo;
-        $user->password = Hash::make($request->password);
         $user->save();
 
         $user->roles()->detach();

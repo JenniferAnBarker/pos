@@ -10,12 +10,12 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Add Permission</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Edit Permission</a></li>
                         
-                        <li class="breadcrumb-item active">Add Permission</li>
+                        <li class="breadcrumb-item active">Edit Permission</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Add Permission</h4>
+                <h4 class="page-title">Edit Permission</h4>
             </div>
         </div>
     </div>     
@@ -28,17 +28,19 @@
                 <div class="card-body">
 
                         <div class="tab-pane" id="settings">
-                            <form id="myForm" method="post" action="{{ route('permission.store')}}" enctype="multipart/form-data">
+                            <form id="myForm" method="post" action="{{ route('permission.update')}}">
                                 @csrf
 
-                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Permission Info</h5>
+                                <input type="hidden" name="id" value="{{ $permission->id}}">
+
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Edit Permission Info</h5>
                                 
                                 <div class="row">
                                     
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
                                             <label for="name" class="form-label">Permission Name</label>
-                                            <input type="text" name="name" class="form-control">
+                                            <input type="text" name="name" class="form-control" value="{{ $permission->name}}">
                                         </div>
                                     </div> <!-- end col -->
                                     
@@ -47,18 +49,19 @@
                                             <label for="group_name" class="form-label">Group Name</label>
                                             <select name="group_name" id="group_name" class="form-control">
                                                 <option selected disabled>Select Group</option>
-                                                <option value="pos">Pos</option>
-                                                <option value="employee">Employee</option>
-                                                <option value="customer">Customer</option>
-                                                <option value="supplier">Supplier</option>
-                                                <option value="salary">Salary</option>
-                                                <option value="attendance">Attendance</option>
-                                                <option value="category">Category</option>
-                                                <option value="product">Product</option>
-                                                <option value="expense">Expense</option>
-                                                <option value="orders">Orders</option>
-                                                <option value="stock">Stock</option>
-                                                <option value="roles">Roles</option>
+                                                <option value="pos" {{ $permission->group_name == 'pos' ? "selected" : ""}}>Pos</option>
+                                                <option value="employee" {{ $permission->group_name == 'employee' ? "selected" : ""}}>Employee</option>
+                                                <option value="customer" {{ $permission->group_name == 'customer' ? "selected" : ""}}>Customer</option>
+                                                <option value="supplier" {{ $permission->group_name == 'supplier' ? "selected" : ""}}>Supplier</option>
+                                                <option value="salary" {{ $permission->group_name == 'salary' ? "selected" : ""}}>Salary</option>
+                                                <option value="attendance" {{ $permission->group_name == 'attendance' ? "selected" : ""}}>Attendance</option>
+                                                <option value="category" {{ $permission->group_name == 'category' ? "selected" : ""}}>Category</option>
+                                                <option value="product" {{ $permission->group_name == 'product' ? "selected" : ""}}>Product</option>
+                                                <option value="expense" {{ $permission->group_name == 'expense' ? "selected" : ""}}>Expense</option>
+                                                <option value="orders" {{ $permission->group_name == 'orders' ? "selected" : ""}}>Orders</option>
+                                                <option value="stock" {{ $permission->group_name == 'stock' ? "selected" : ""}}>Stock</option>
+                                                <option value="roles" {{ $permission->group_name == 'roles' ? "selected" : ""}}>Roles</option>
+                                                <option value="admin" {{ $permission->group_name == 'admin' ? "selected" : ""}}>Admin</option>
                                             </select>
                                         </div>
                                     </div> <!-- end col -->

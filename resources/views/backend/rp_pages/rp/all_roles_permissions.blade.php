@@ -48,8 +48,12 @@
                                     @endforeach
                                     </td>
                                     <td width="18%">
+                                        @if(Auth::user()->can('admin.edit'))
                                         <a href="{{ route('admin.edit.roles',$item->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        @endif
+                                        @if(Auth::user()->can('admin.delete'))
                                         <a href="{{ route('admin.delete.roles',$item->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -15,12 +15,12 @@ class RoleController extends Controller
     public function per_all(){
         
         $permissions = Permission::all();
-        return view('backend.pages.permission.all_permission',compact('permissions'));
+        return view('backend.rp_pages.permission.all_permission',compact('permissions'));
     }
     
     public function per_add(){
         
-        return view('backend.pages.permission.add_permission');
+        return view('backend.rp_pages.permission.add_permission');
     }
 
     public function per_store(Request $request){
@@ -42,7 +42,7 @@ class RoleController extends Controller
        
         $permission = Permission::findOrfail($id);
 
-        return view('backend.pages.permission.edit_permission',compact('permission'));
+        return view('backend.rp_pages.permission.edit_permission',compact('permission'));
     }
 
     public function per_update(Request $request) {
@@ -80,12 +80,12 @@ class RoleController extends Controller
         
         $roles = Role::all();
 
-        return view('backend.pages.role.all_role',compact('roles'));
+        return view('backend.rp_pages.role.all_role',compact('roles'));
     }
 
     public function role_add(){
         
-        return view('backend.pages.role.add_roles');
+        return view('backend.rp_pages.role.add_roles');
     }
 
     public function role_store(Request $request){
@@ -106,7 +106,7 @@ class RoleController extends Controller
         
         $role = Role::findOrFail($id);
 
-        return view('backend.pages.role.edit_role',compact('role'));
+        return view('backend.rp_pages.role.edit_role',compact('role'));
     }
 
     public function role_update(Request $request){
@@ -145,7 +145,7 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $permission_groups = User::getPermissionGroups();
 
-        return view('backend.pages.rp.add_roles_permission',compact('roles','permissions','permission_groups'));
+        return view('backend.rp_pages.rp.add_roles_permission',compact('roles','permissions','permission_groups'));
     }
 
     public function rp_store(Request $request) {
@@ -172,7 +172,7 @@ class RoleController extends Controller
     public function rp_all() {
 
         $roles = Role::all();
-        return view('backend.pages.rp.all_roles_permissions',compact('roles'));
+        return view('backend.rp_pages.rp.all_roles_permissions',compact('roles'));
     }
 
     public function rp_edit($id){
@@ -181,7 +181,7 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $permission_groups = User::getPermissionGroups();
 
-        return view('backend.pages.rp.edit_roles_permission',compact('role','permissions','permission_groups'));
+        return view('backend.rp_pages.rp.edit_roles_permission',compact('role','permissions','permission_groups'));
     }
 
     public function rp_update(Request $request, $id) {

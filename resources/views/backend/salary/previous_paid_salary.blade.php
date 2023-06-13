@@ -39,7 +39,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="employee_id" class="form-label">Employee Name</label>
-                                           <strong style="color: #fff;">{{ $paysalary->name}}</strong>
+                                           <strong style="color: #fff;">{{ $paysalary->employee->name}}</strong>
                                         </div>
                                     </div> <!-- end col -->
                                     
@@ -58,16 +58,16 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="year" class="form-label">Employee Salary</label>
-                                            <strong style="color: #fff;">£ {{ $paysalary->salary}}</strong>
-                                            <input type="hidden" name="paid_amount" value="{{ $paysalary->salary}}">
+                                            <strong style="color: #fff;">£ {{ number_format((float)$paysalary->paid_amount, 2, '.', '')}}</strong>
+                                            <input type="hidden" name="paid_amount" value="{{ $paysalary->paid_amount}}">
                                         </div>
                                     </div> <!-- end col -->
                                     
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="year" class="form-label">Salary Advances</label>
-                                            <strong style="color: #fff;">£ {{ empty($paysalary->advance->advance_salary) ? 0 : $paysalary->advance->advance_salary }}</strong>
-                                            <input type="hidden" name="advance_salary" value="{{ empty($paysalary->advance->advance_salary) ? '' : $paysalary->advance->advance_salary}}">
+                                            <strong style="color: #fff;">£ {{ empty($paysalary->advance_salary) ? 0 : number_format((float)$paysalary->advance_salary, 2, '.', '') }}</strong>
+                                            <input type="hidden" name="advance_salary" value="{{ empty($paysalary->advance_salary) ? '' : $paysalary->advance_salary}}">
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
@@ -77,17 +77,17 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="year" class="form-label">Salary Due</label>
-                                            @if (!empty($paysalary->advance->advance_salary))
+                                            {{-- @if (!empty($paysalary->advance_salary))
                                             @php
-                                            $amount = $paysalary->salary - $paysalary->advance->advance_salary;
+                                            $amount = $paysalary->paid_amount - $paysalary->advance_salary;
                                             @endphp
                                             @else
                                             @php
-                                            $amount = $paysalary->salary
+                                            $amount = $paysalary->paid_amount
                                             @endphp
-                                            @endif
-                                            <strong style="color: #fff;"> £ {{ $amount}}</strong>
-                                            <input type="hidden" name="due_salary" value=" {{ round($amount)}}">
+                                            @endif --}}
+                                            <strong style="color: #fff;"> £ {{ number_format((float)$paysalary->due_salary, 2, '.', '')}}</strong>
+                                            <input type="hidden" name="due_salary" value=" {{ round($paysalary->due_amount)}}">
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->

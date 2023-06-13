@@ -45,7 +45,15 @@
                                     <td> <img src="{{ asset($item->employee->image) }}" style="width:50px; height:40px;"> </td>
                                     <td>{{ $item->employee->name}}</td>
                                     <td>{{ date('Y-m-d',strtotime($item->date))}}</td>
-                                    <td>{{ $item->attend_status}}</td>
+                                    <td>
+                                        @if($item->attend_status == 'Present')
+                                            <span class="badge  bg-success">Present</span>
+                                            @elseif($item->attend_status == 'Leave')
+                                                <span class="badge  bg-warning">Leave</span>
+                                            @else
+                                            <span class="badge  bg-danger">Absent</span>
+                                        @endif
+                                    </td>
                                     
                                 </tr>
                                 @endforeach

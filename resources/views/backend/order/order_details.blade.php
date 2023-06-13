@@ -91,14 +91,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="pay" class="form-label">Paid Amount</label>
-                                            <p class="text-danger">£{{ $order->pay}}</p>
+                                            <p class="text-danger">£{{ number_format((float)$order->pay, 2, '.', '')}}</p>
                                         </div>
                                     </div> <!-- end col -->
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="due" class="form-label">Due Amount</label>
-                                            <p class="text-danger">£{{ $order->due}}</p>
+                                            <p class="text-danger">£{{ number_format((float)$order->due, 2, '.', '')}}</p>
                                         </div>
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
@@ -116,7 +116,11 @@
                                 
                                 
                                 <div class="text-end">
+                                    @if($order->due == 0)
                                     <button type="submit" class="btn btn-success waves-effect waves-light mt-2"><i class="mdi mdi-content-save"></i> Complete Order</button>
+                                    @else
+                                    <a href="{{ route('pending.due')}}" class="btn btn-warning waves-effect waves-light mt-2">Go To Payments</a>
+                                    @endif
                                 </div>
                             </form>
                         </div>
@@ -141,12 +145,12 @@
                                         <tbody>
                                             @foreach($orderItems as $key=> $item)
                                             <tr>
-                                                <td> <img src="{{asset($item->product->product_image)}}" style="width:50px; height:40px;"> </td>
+                                                <td> <img src="{{url($item->product->product_image)}}" style="width:50px; height:40px;"> </td>
                                                 <td>{{ $item->product->product_name}}</td>
                                                 <td>{{ $item->product->product_code}}</td>
                                                 <td>{{ $item->quantity}}</td>
-                                                <td>£{{ $item->unit_cost}}</td>
-                                                <td>£{{ $item->total}}</td>
+                                                <td>£{{ number_format((float)$item->unit_cost, 2, '.', '')}}</td>
+                                                <td>£{{ number_format((float)$item->total, 2, '.', '')}}</td>
                                                 
                                             </tr>
                                             @endforeach

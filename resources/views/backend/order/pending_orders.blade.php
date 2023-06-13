@@ -51,8 +51,13 @@
                                     <td>{{ $item->order_date}}</td>
                                     <td>{{ $item->payment_status}}</td>
                                     <td>{{ $item->invoice_no}}</td>
-                                    <td>{{ $item->pay}}</td>
-                                    <td><span class="badge bg-danger">{{ $item->order_status}}</span></td>
+                                    <td>£{{ $item->pay}}</td>
+                                    <td>
+                                        @if($item->due > 0)
+                                        <span class="badge bg-danger">Outstanding Funds</span></td>
+                                        @else
+                                        <span class="badge bg-success">Paid in Full</span></td>
+                                        @endif
                                     <td>
                                         <a href="{{ route('order.details',$item->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Details</a>
                                     </td>
