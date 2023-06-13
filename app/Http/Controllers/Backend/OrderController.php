@@ -19,6 +19,10 @@ class OrderController extends Controller
 {
     public function finalInvoice(Request $request){
 
+        $rtotal = $request->total;
+        $rpay = $request->pay;
+        $mtotal = $rtotal - $rpay;
+
         $data = array();
 
         $data['customer_id'] = $request->customer_id;
@@ -31,7 +35,7 @@ class OrderController extends Controller
         $data['total'] = $request->total;
         $data['payment_status'] = $request->payment_status;
         $data['pay'] = $request->pay;
-        $data['due'] = $request->due;
+        $data['due'] = $mtotal;
         $data['created_at'] = Carbon::now();
 
         $order_id = Order::insertGetId($data);
@@ -102,6 +106,8 @@ class OrderController extends Controller
         return view('backend.order.complete_orders',compact('orders'));
     }
 
+    ///////////////////////Stock////////////////////////////////////////////
+
     public function manageStock(){
 
         $products = Product::latest()->get();
@@ -119,5 +125,48 @@ class OrderController extends Controller
             'chroot' => public_path(),
         ]);
         return $pdf->download('invoice.pdf');
+    }
+    
+    ///////////////////////Due////////////////////////////////////////////
+
+    public function pendingDue() {
+        
+        $alldue = Order::where('due','>',0)->orderBy('id','desc')->get();
+        
+        return view('backend/order/pending_due',compact('alldue'));
+    }
+
+    public function orderDueAjax($id) {
+        
+        $order = Order::findOrFail($id);
+        
+        return response()->json($order);
+    }
+
+    public function updateDue(Request $request) {
+        
+        $order_id = $request->id;
+        $due_amount = $request->due;
+        $pay_amount = $request->pay;
+
+        $allorder = Order::findOrFail($order_id);
+        $maindue = $allorder->due;
+        $mainpay = $allorder->pay;
+
+        $paid_due = $maindue - $due_amount;
+        $paid_pay = $mainpay + $pay_amount;
+
+        Order::findOrFail($order_id)->update([
+            'due' => $paid_due,
+            'pay' => $paid_pay,
+        ]);
+        
+        $notification = array(
+            'message' => 'Credit Updated!',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('pending.due')->with($notification);
+         
     }
 }

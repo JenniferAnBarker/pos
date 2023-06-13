@@ -166,7 +166,11 @@
 
 </div> <!-- content -->
 
-<!-- Signup modal content -->
+{{-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////Invoice modal content/////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+
 <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -212,10 +216,10 @@
                         <input class="form-control" type="text" id="category" required="" placeholder="Pay Now" name="pay">
                     </div>
                     
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="category" class="form-label">Amount Due</label>
                         <input class="form-control" type="text" id="category" required="" placeholder="Amount Due" name="due">
-                    </div>
+                    </div> --}}
 
                     <input type="hidden" name="customer_id" value="{{ $customer->id}}">
                     <input type="hidden" name="order_date" value="{{ date('d-F-Y')}}">

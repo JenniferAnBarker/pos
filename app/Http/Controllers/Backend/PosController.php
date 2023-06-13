@@ -6,13 +6,16 @@ use App\Models\Product;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PosController extends Controller
 {
     public function pos() {
 
-        $products = Product::latest()->get();
+        $todaydate = Carbon::now();
+
+        $products = Product::where('expire_date', '>', $todaydate)->latest()->get();
         $customers = Customer::all();
         return view('backend.pos.pos_page',compact('products','customers'));
     }

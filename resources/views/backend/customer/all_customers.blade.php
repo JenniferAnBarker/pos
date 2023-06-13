@@ -50,8 +50,12 @@
                                     <td>{{ $cus->phone}}</td>
                                     <td>{{ $cus->shopname}}</td>
                                     <td>
+                                        @if(Auth::user()->can('customer.edit'))
                                         <a href="{{ route('edit.customer',$cus->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light">Edit</a>
+                                        @endif
+                                        @if(Auth::user()->can('customer.delete'))
                                         <a href="{{ route('delete.customer',$cus->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete">Delete</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -50,8 +50,12 @@
                                     <td>{{ $sup->phone}}</td>
                                     <td>{{ $sup->type}}</td>
                                     <td>
+                                        @if(Auth::user()->can('supplier.edit'))
                                         <a href="{{ route('edit.supplier',$sup->id)}}" class="btn btn-blue rounded-pill waves-effect waves-light"><i class="fa fa-edit p-1"></i> Edit</a>
+                                        @endif
+                                        @if(Auth::user()->can('supplier.delete'))
                                         <a href="{{ route('delete.supplier',$sup->id)}}" class="btn btn-danger rounded-pill waves-effect waves-light" id="delete"><i class="fa fa-trash p-1"></i> Delete</a>
+                                        @endif
                                         <a href="{{ route('supplier.details',$sup->id)}}" class="btn btn-info rounded-pill waves-effect waves-light"><i class="fa fa-circle-info p-1"></i> Details</a>
                                     </td>
                                 </tr>
